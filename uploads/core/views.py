@@ -11,20 +11,24 @@ def home(request):
 
     return render(request, 'core/home.html', { 'documents': documents })
 
+#-----------------------
 def model_form_upload(request):
 
     documents = Document.objects.all()
     
     if request.method == 'POST':
-        # import pdb; pdb.set_trace()
-
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        for _file in request.FILES.getlist('file'):
+            request.FILES['file'] = _file
+            form = DocumentForm(request.POST, request.FILES)
+            if form.is_valid():
+                _new = form.save(commit=False)
+                _new.save()
+                form.save_m2m()
             return redirect('model_form_upload')
     else:
         form = DocumentForm()
     return render(request, 'core/model_form_upload.html', { 'form': form }, { 'documents': documents })
+#-----------------------
 
 # NOT RELEVANT ONE
 def simple_upload(request):

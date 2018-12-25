@@ -4,6 +4,7 @@ from uploads.core.models import Document
 
 
 class DocumentForm(forms.ModelForm):
-    class Meta:
-        model = Document
-        fields = ['title', 'description', 'document', ]
+	file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+	class Meta:
+		model = Document
+		fields = ['title', 'description', 'document', ]
