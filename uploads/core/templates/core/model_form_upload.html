@@ -4,7 +4,9 @@
   <h1> SUBMISSION </h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <!--To change the form, you must modify models.py and forms.py-->
+    {{ form.as_p }} 
     <button type="submit">Upload</button>
   </form>
 

@@ -1,4 +1,6 @@
-# from django.conf.urls import url
+# Every additioanl page you wish to add should be added to urlpatterns
+# Read more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
+
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -8,8 +10,6 @@ from uploads.core import views
 
 urlpatterns = [
 	path('', views.home, name='home'),
-    path('uploads/simple/', views.simple_upload, name='simple_upload'),
-    path('uploads/form/', views.model_form_upload, name='model_form_upload'),
     path('admin/', admin.site.urls),
 
 ]
